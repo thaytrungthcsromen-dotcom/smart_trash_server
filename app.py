@@ -2,11 +2,15 @@ import os
 import sqlite3
 from datetime import datetime
 from flask import Flask, request, jsonify
+from init_students import init_db
 
 app = Flask(__name__)
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.db")
 
-# Quy tắc cộng điểm theo loại rác[cite: 1, 2]
+# Tự động khởi tạo và cập nhật danh sách học sinh khi server khởi động
+init_db()
+
+# Quy tắc cộng điểm theo loại rác
 POINTS_RULE = {
     "tai_che": 5,
     "huu_co": 3,
